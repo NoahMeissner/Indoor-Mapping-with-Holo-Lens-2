@@ -3,4 +3,4 @@
 
 # Indoor-Mapping-with-Holo-Lens-2
 
-<img src="Images/Pipeline.png" width=50% height=50%>
+<img src="Images/Pipeline.png" width=100% height=100%>
