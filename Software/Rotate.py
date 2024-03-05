@@ -39,7 +39,7 @@ def calculate_angle_dot_product(x_b, y_b):
 def get_nodes(dataframe):
     filtered = dataframe[dataframe['type'] == 'corner']
     points = filtered.nsmallest(2, 'y')
-    start = points
+    start = points.iloc[0]
     end = points.tail(1)
     return [start, end]
 
@@ -149,7 +149,7 @@ class Rotate:
                 gang = False
                 finish = True
                 points = get_nodes(data)
-                start_points = points[0].iloc[0]
+                start_points = points[0]
                 end_point = points[1].iloc[0]
         else:
             start_points = start_points.iloc[0]
