@@ -15,9 +15,7 @@ to digitalized plans, but much efficient to acquire and easier to
 be augmented with information about the physical environment
 impossible to obtain from blueprints
 
-<p align="center">
 
+### Demo Video
 
 [![Little red riding hood](https://www.intermedia-solutions.net/wp-content/uploads/2021/06/video-thumbnail-01.jpg)](https://youtu.be/BTw0giHLW00 "Demo Video - Click to Watch!")
-
-</p>
