@@ -6,6 +6,5 @@
 <img src="Images/pipeline.png" width=100% height=100%>
 
 
+[![Little red riding hood](https://www.intermedia-solutions.net/wp-content/uploads/2021/06/video-thumbnail-01.jpg)](https://youtu.be/BTw0giHLW00 "Demo Video - Click to Watch!")
 
-
-[![Little red riding hood]([https://www.intermedia-solutions.net/wp-content/uploads/2021/06/video-thumbnail-01.jpg](https://youtu.be/BTw0giHLW00 "Demo Video - Click to Watch!")
