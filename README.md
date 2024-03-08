@@ -18,4 +18,4 @@ impossible to obtain from blueprints
 
 ### Demo Video
 
-[![Little red riding hood](https://www.intermedia-solutions.net/wp-content/uploads/2021/06/video-thumbnail-01.jpg)](https://youtu.be/G0n0iiEoBT4 "Demo Video - Click to Watch!")
+[![Little red riding hood](https://www.intermedia-solutions.net/wp-content/uploads/2021/06/video-thumbnail-01.jpg)](https://youtu.be/s5LxNkAr_Cg "Demo Video - Click to Watch!")
