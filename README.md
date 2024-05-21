@@ -15,7 +15,19 @@ to digitalized plans, but much efficient to acquire and easier to
 be augmented with information about the physical environment
 impossible to obtain from blueprints
 
+# Citation
+```
+@misc{meissner2024indoor,
+    title={Indoor Mapping with Holo Lens 2}, 
+    author={Noah Meißner, Bernd Ludwig, Steffen Decker and Volker Bräutigam},
+    year={2024},
+}
+```
+
+
 
 ### Demo Video
+Link: https://youtu.be/s5LxNkAr_Cg
 
-[![Little red riding hood](https://www.intermedia-solutions.net/wp-content/uploads/2021/06/video-thumbnail-01.jpg)](https://youtu.be/s5LxNkAr_Cg "Demo Video - Click to Watch!")
+https://github.com/NoahMeissner/Indoor-Mapping-with-Holo-Lens-2/assets/108337767/6cd49364-c5c2-42d3-b1fe-73cbd05313e0
+
