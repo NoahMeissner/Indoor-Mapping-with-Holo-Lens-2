@@ -30,7 +30,10 @@ def detect_csv_delimiter(file_path):
 
 
 def rename_german_columns(df):
-    df['type'] = df['type'].replace({'Raumecke': 'corner', 'Durchgangstür': 'door', 'Aufzugstür': 'elevator'})
+    df['type'] = (df['type']
+                  .replace({'Raumecke': 'corner',
+                            'Durchgangstür': 'door',
+                            'Aufzugstür': 'elevator'}))
     return df
 
 

@@ -2,7 +2,8 @@
 # Licensed under the MIT License.
 
 """
-This class facilitates the rotation of a surveyed space for its subsequent utilization.
+This class facilitates the rotation of a surveyed
+space for its subsequent utilization.
 """
 import math
 import numpy as np
@@ -55,20 +56,23 @@ def validate_rotation(dataframe):
         max_y_point = y_max_points.iloc[0]
 
         second_max_y_points = filtered[
-            filtered['y'].isin(filtered['y'].nlargest(2)) & (filtered['y'] != max_y_point['y'])]
+            filtered['y'].isin(filtered['y'].nlargest(2))
+            & (filtered['y'] != max_y_point['y'])]
         if not second_max_y_points.empty:
             second_max_y_point = second_max_y_points.iloc[0]
         else:
             second_max_y_point = max_y_point
 
-        if abs(min_y_point['x'] - max_y_point['x']) < abs(min_y_point['x'] - second_max_y_point['x']):
+        if (abs(min_y_point['x'] - max_y_point['x'])
+                < abs(min_y_point['x'] - second_max_y_point['x'])):
             endpoint = second_max_y_point
         else:
             endpoint = max_y_point
 
-        if (filtered['y'].max() - filtered['y'].min()) > (filtered['x'].max() - filtered['x'].min()):
+        if ((filtered['y'].max() - filtered['y'].min())
+                > (filtered['x'].max() - filtered['x'].min())):
             obj = Rotate(dataframe)
-            return obj.rotate_corridor(dataframe, endpoint, 90)
+            return obj.rotate_object(dataframe, endpoint, 90, True)
 
     return dataframe
 
@@ -95,8 +99,8 @@ class Rotate:
         self.dataframe = dataframe
 
     @staticmethod
-    def rotate_corridor(data, end_point, angle):
-        if 45 < angle < 135:
+    def rotate_object(data, end_point, angle, corridor):
+        if 45 < angle < 135 and corridor or not corridor:
             angle_rad = calculate_rad(angle, end_point)
 
             cos_angle = math.cos(angle_rad)
@@ -120,30 +124,36 @@ class Rotate:
             data = data.rename(columns={'z': 'y'})
 
         """
-        Rotate the room data so that the line from the last point to the 'Start' point is parallel to the X axis.
+        Rotate the room data so that the line from the last
+        point to the 'Start' point is parallel to the X axis.
         """
         start_points = data[data['type'] == 'Start']
         end_point = data.iloc[-1]
         if len(start_points) > 1:
             if not gang:
                 gang = True
-                ## We pick a random door and see that it works with that one
+                # We pick a random door and see that it works with that one
                 try:
                     unique_values = data['room'].unique()
                     filtered_values = [value for value in unique_values if
-                                       value not in ['start', 'default', 'corner']]
+                                       value not in
+                                       ['start', 'default', 'corner']]
                     random_value = np.random.choice(filtered_values)
                     random_pair = data[data['room'] == random_value]
                     if len(random_pair) == 2:
-                        start_points = random_pair[random_pair['type'] == 'Start'].iloc[0]
-                        end_point = random_pair[random_pair['type'] != 'Start'].iloc[0]
+                        start_points = random_pair[
+                            random_pair['type'] == 'Start'].iloc[0]
+                        end_point = random_pair[
+                            random_pair['type'] != 'Start'].iloc[0]
                     else:
                         print(f"turn error: Not enough points")
                         start_points = start_points.iloc[0]
-                except:
+                except Exception as e:
+                    print(f"turn error: {e}")
                     start_points = start_points.iloc[0]
                     room = start_points['room']
-                    end_point = data[data['room'] == room & data[data['type'] == 'door']].iloc[0]
+                    end_point = data[data['room'] == room
+                                     & data[data['type'] == 'door']].iloc[0]
 
             else:
                 gang = False
@@ -160,20 +170,11 @@ class Rotate:
         end_point['x'] -= start_points['x']
         end_point['y'] -= start_points['y']
         if type(end_point['x']) is not (float and np.float64):
-            angle = calculate_angle_dot_product(end_point['x'].iloc[0], end_point['y'].iloc[0])
+            angle = calculate_angle_dot_product(
+                end_point['x'].iloc[0], end_point['y'].iloc[0])
         else:
             angle = calculate_angle_dot_product(end_point['x'], end_point['y'])
-        angle_rad = calculate_rad(angle, end_point)
-
-        cos_angle = math.cos(angle_rad)
-        sin_angle = math.sin(angle_rad)
-
-        data['x_rotate'] = data['x'] * cos_angle - data['y'] * sin_angle
-        data['y_rotate'] = data['x'] * sin_angle + data['y'] * cos_angle
-
-        data = data.drop(columns=['y', 'x'])
-        data = data.rename(columns={'x_rotate': 'x'})
-        data = data.rename(columns={'y_rotate': 'y'})
+        data = self.rotate_object(data, end_point, angle, False)
         if not gang or gang is None:
             if finish:
                 data = validate_rotation(data)

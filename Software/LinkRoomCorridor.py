@@ -4,13 +4,15 @@
 import pandas as pd
 
 """
-This file connects rooms with corridors and later returns a list of corridors with added corridors.
+This file connects rooms with corridors and later
+returns a list of corridors with added corridors.
 and later returns a list of corridors.
 """
 
 """
-    This Method will check if the y Direction is correct. Because it can be the case, that the room is 
-    horizontally mirrored
+This Method will check if the y Direction is correct.
+Because it can be the case, that the room is
+horizontally mirrored
 """
 
 
@@ -71,7 +73,8 @@ def validate_vertical_alignment(room, floor, room_number):
 
 
 '''
-    This method will move graph to start point, so that we are able to add room to corridor
+This method will move graph to start point,
+so that we are able to add room to corridor
 '''
 
 
@@ -96,15 +99,18 @@ def add_rooms_together(floor, room, room_name):
     try:
         room = move(room, None)
         floor = move(floor, room_name)
-        floor_y_min = min(floor[(floor['type'] == "corner") & (floor['orig'] == 'init')]['y'])
-        floor_y_max = max(floor[(floor['type'] == "corner") & (floor['orig'] == 'init')]['y'])
+        floor_y_min = min(floor[(floor['type'] == "corner")
+                                & (floor['orig'] == 'init')]['y'])
+        floor_y_max = max(floor[(floor['type'] == "corner")
+                                & (floor['orig'] == 'init')]['y'])
 
         room = validate_horizontal_alignment(room, floor_y_min, floor_y_max)
         room = validate_vertical_alignment(room, floor, room_name)
         room['orig'] = 'room'
 
         result = pd.concat([floor, room], ignore_index=True)
-        result = result[~((result['room'] == room_name) & (result['orig'] == 'init'))]
+        result = result[~((result['room'] == room_name)
+                          & (result['orig'] == 'init'))]
         return result
     except Exception as e:
         print(e)
@@ -132,7 +138,8 @@ def add_room(room_list, floor):
 
 
 '''
-This class will create from several dataframes a single frame and add the rooms in the right place
+This class will create from several dataframes a single frame
+and add the rooms in the right place
 '''
 
 
@@ -145,7 +152,7 @@ class Graph:
         self.list_df = DataFrame_list
 
     '''
-    SELECT Corridors and Rooms separately 
+    SELECT Corridors and Rooms separately
     '''
 
     def select(self, corridor):

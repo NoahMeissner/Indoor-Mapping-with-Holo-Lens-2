@@ -17,8 +17,11 @@ class Visualize:
         fig = make_subplots(rows=1, cols=1)
 
         dataframe = self.dataframe
-        for point_type, color in [('Start', 'blue'), ('door', 'green'), ('corner', 'red'),
-                                  ('elevator', 'yellow'), ('Init', 'black')]:
+        for point_type, color in [('Start', 'blue'),
+                                  ('door', 'green'),
+                                  ('corner', 'red'),
+                                  ('elevator', 'yellow'),
+                                  ('Init', 'black')]:
             points = dataframe[dataframe['type'] == point_type]
 
             fig.add_trace(go.Scatter(
@@ -32,7 +35,9 @@ class Visualize:
             ))
 
         for room in dataframe['room'].unique():
-            room_points = dataframe[(dataframe['room'] == room) & (dataframe['orig'] == 'room')].sort_index()
+            room_points = (dataframe[(dataframe['room'] == room)
+                                     & (dataframe['orig'] == 'room')]
+                           .sort_index())
             if len(room_points) > 1:
                 fig.add_trace(go.Scatter(
                     x=room_points['x'],
@@ -43,8 +48,10 @@ class Visualize:
                 ))
 
         for corridor in dataframe['corridor'].unique():
-            corridor_points = dataframe[
-                (dataframe['corridor'] == corridor) & (dataframe['orig'] == 'init')].sort_index()
+            corridor_points = (dataframe[
+                (dataframe['corridor'] == corridor)
+                & (dataframe['orig'] == 'init')]
+                               .sort_index())
             if len(corridor_points) > 1:
                 fig.add_trace(go.Scatter(
                     x=corridor_points['x'],
@@ -62,7 +69,8 @@ class Visualize:
         fig.show()
 
     def show_multiple_rooms(self):
-        ls = ['BA526', 'BA528', 'BA529', 'BA530', 'BA531', 'BA532', 'BA533', 'BA534', 'BA535', 'BA527']
+        # These are example Rooms
+        ls = ['BA526', 'BA528', 'BA529']
         colors = {}
         for room in ls:
             colors[room] = f'#{random.randint(0, 0xFFFFFF):06x}'
@@ -91,8 +99,11 @@ class Visualize:
 
         fig = make_subplots(rows=1, cols=1)
 
-        for point_type, color in [('Start', 'blue'), ('door', 'green'), ('corner', 'red'),
-                                  ('elevator', 'yellow'), ('Init', 'black')]:
+        for point_type, color in [('Start', 'blue'),
+                                  ('door', 'green'),
+                                  ('corner', 'red'),
+                                  ('elevator', 'yellow'),
+                                  ('Init', 'black')]:
             points = dataframe[dataframe['type'] == point_type]
 
             fig.add_trace(go.Scatter(

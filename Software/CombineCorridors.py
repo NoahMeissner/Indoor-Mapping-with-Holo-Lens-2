@@ -18,23 +18,23 @@ def move_corridor(floor, name):
         floor['x'] -= x
         floor['y'] -= y
         return floor
-    except:
-        print(f"move_corridor_error:{name}")
+    except Exception as e:
+        print(f"move_corridor_error:{name} + error:{e}")
 
 
 def get_name(floor, name):
     try:
         fil = floor[floor['room'] == name]
         return fil['corridor'].iloc[0]
-    except:
-        print(f"get_name_error:{name}")
+    except Exception as e:
+        print(f"get_name_error:{name} + error:{e}")
 
 
-def get_max_nodes(list):
+def get_max_nodes(ls):
     try:
         res = {}
-        for corr in list.keys():
-            df = list[corr].get_dataframe()
+        for corr in ls.keys():
+            df = ls[corr].get_dataframe()
             rows, cols = df.shape
             res[corr] = rows
         return max(res, key=lambda key: res[key])
@@ -44,7 +44,8 @@ def get_max_nodes(list):
 
 def turn(df, end_point, vector_room, vector_floor):
     try:
-        dot_product = vector_room[1] * vector_floor[1] + vector_room[0] * vector_floor[0]
+        dot_product = (vector_room[1] * vector_floor[1]
+                       + vector_room[0] * vector_floor[0])
         magnitude_a = math.sqrt(vector_room[1] ** 2 + vector_room[0] ** 2)
         magnitude_b = math.sqrt(vector_floor[1] ** 2 + vector_floor[0] ** 2)
 
@@ -57,10 +58,12 @@ def turn(df, end_point, vector_room, vector_floor):
 
         angle = math.degrees(math.acos(cosine_angle))
         turn_object = Rotate(df)
-        return turn_object.rotate_corridor(df, end_point, angle)
+        return turn_object.rotate_object(df, end_point, angle)
     except Exception as e:
         print(f'Turn Error: {e}')
-        print(f'endpoint:{end_point}, vector_room{vector_room}, vector_floor{vector_floor}')
+        print(f'endpoint:{end_point},'
+              + f' vector_room{vector_room},'
+              + f' vector_floor{vector_floor}')
         return df
 
 
@@ -70,13 +73,19 @@ def check_turned(floor, room, room_name, floor_name):
         filtered_room = room[room['room'] == floor_name]
         room_end = filtered_room[filtered_room['type'] == 'door'].iloc[0]
         floor_end = filtered_floor[filtered_floor['type'] == 'door'].iloc[0]
-        return turn(room, room_end, [room_end['y'], room_end['x']], [floor_end['y'], floor_end['x']])
+        return turn(room,
+                    room_end,
+                    [room_end['y'],
+                     room_end['x']],
+                    [floor_end['y'],
+                     floor_end['x']])
     except Exception as e:
         print(f"check_turned Error:{e}")
 
 
 def check_y_direction(room, room_name, floor_y_min, floor_y_max):
-    filtered_room = room[(room['orig'] == 'init') & (room['corridor'] == room_name)]
+    filtered_room = room[(room['orig'] == 'init')
+                         & (room['corridor'] == room_name)]
     try:
         if abs(floor_y_max) < abs(floor_y_min):
             # Condition 1 (Room should be above)
@@ -143,16 +152,27 @@ def add_corridors_together(floor, floor_room, floor_room_name):
         floor_room = move_corridor(floor_room, floor_name)
         floor = move_corridor(floor, floor_room_name)
         filtered_floor = floor[
-            (floor['type'] == "corner") & (floor['corridor'] == floor_name) & (floor['orig'] == 'init')]
+            (floor['type'] == "corner")
+            & (floor['corridor'] == floor_name)
+            & (floor['orig'] == 'init')]
         if not filtered_floor.empty:
             floor_y_min = min(filtered_floor['y'])
             floor_y_max = max(filtered_floor['y'])
         else:
             print('floor empty')
             return
-        floor_room = check_turned(floor, floor_room, floor_room_name, floor_name)
-        floor_room = check_y_direction(floor_room, floor_room_name, floor_y_min, floor_y_max)
-        floor_room = check_x_direction(floor_room, floor, floor_room_name, floor_name)
+        floor_room = check_turned(floor,
+                                  floor_room,
+                                  floor_room_name,
+                                  floor_name)
+        floor_room = check_y_direction(floor_room,
+                                       floor_room_name,
+                                       floor_y_min,
+                                       floor_y_max)
+        floor_room = check_x_direction(floor_room,
+                                       floor,
+                                       floor_room_name,
+                                       floor_name)
         if floor_room is not None:
             result = pd.concat([floor, floor_room], ignore_index=True)
         else:
@@ -163,7 +183,7 @@ def add_corridors_together(floor, floor_room, floor_room_name):
         return None
 
 
-class corridor:
+class Corridor:
 
     def __init__(self, name, list_connections, dataframe):
         self.name = name
@@ -182,8 +202,8 @@ class corridor:
     def get_conn(self):
         return self.conn
 
-    def set_conn(self, list):
-        self.conn = list
+    def set_conn(self, ls):
+        self.conn = ls
 
 
 class Combine:
@@ -200,7 +220,7 @@ class Combine:
             for corr_name in corridors.keys():
                 if corr_name in df['room'].tolist() and i != corr_name:
                     conn.append(corr_name)
-            object_list[i] = (corridor(i, conn, corridors[i]))
+            object_list[i] = (Corridor(i, conn, corridors[i]))
 
         main_corridor = get_max_nodes(object_list)
         main_corridor_object = object_list.get(main_corridor)
