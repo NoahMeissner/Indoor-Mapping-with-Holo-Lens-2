@@ -15,6 +15,16 @@ to digitalized plans, but much efficient to acquire and easier to
 be augmented with information about the physical environment
 impossible to obtain from blueprints
 
+# Citation
+```
+@misc{meissner2024indoor,
+    title={Indoor Mapping with Holo Lens 2}, 
+    author={Noah Meißner, Bernd Ludwig, Steffen Decker and Volker Bräutigam},
+    year={2024},
+}
+```
+
+
 
 ### Demo Video
 Link: https://youtu.be/s5LxNkAr_Cg
