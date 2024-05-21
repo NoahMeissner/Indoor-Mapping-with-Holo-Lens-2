@@ -19,6 +19,5 @@ impossible to obtain from blueprints
 ### Demo Video
 Link: https://youtu.be/s5LxNkAr_Cg
 
-https://github.com/UniRegensburg/mme-sose2023-projekte-movies/assets/62183826/1537aef0-e8a1-4f30-8ddd-f9d877e01d4a
-
+https://github.com/NoahMeissner/Indoor-Mapping-with-Holo-Lens-2/assets/108337767/6cd49364-c5c2-42d3-b1fe-73cbd05313e0
 
