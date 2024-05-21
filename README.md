@@ -18,4 +18,5 @@ impossible to obtain from blueprints
 
 ### Demo Video
 Link: https://youtu.be/s5LxNkAr_Cg
+
 https://github.com/NoahMeissner/Indoor-Mapping-with-Holo-Lens-2/Video/Efficient Indoor Mapping with HoloLens 2 - Demo Video.mp4
