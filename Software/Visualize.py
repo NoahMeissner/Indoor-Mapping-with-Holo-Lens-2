@@ -21,7 +21,8 @@ class Visualize:
                                   ('door', 'green'),
                                   ('corner', 'red'),
                                   ('elevator', 'yellow'),
-                                  ('Init', 'black')]:
+                                  ('Init', 'black'),
+                                  ('Landmark','purple')]:
             points = dataframe[dataframe['type'] == point_type]
 
             fig.add_trace(go.Scatter(

@@ -113,7 +113,7 @@ def add_rooms_together(floor, room, room_name):
                           & (result['orig'] == 'init'))]
         return result
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
 
 
 '''
@@ -173,6 +173,7 @@ class Graph:
         room_list = self.select(False)
 
         if len(corridors_list) < 1:
+            print(corridors_list)
             print("error")
             return None
 

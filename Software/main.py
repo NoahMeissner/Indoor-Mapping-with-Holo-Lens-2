@@ -12,7 +12,7 @@ import pandas as pd
 import os
 from Visualize import Visualize
 
-PATH = ''
+PATH = ('Data')
 
 
 def detect_csv_delimiter(file_path):
