@@ -17,11 +17,26 @@ impossible to obtain from blueprints
 
 # Citation
 ```
-@misc{meissner2024indoor,
-    title={Indoor Mapping with Holo Lens 2}, 
-    author={Noah Meißner, Bernd Ludwig, Steffen Decker and Volker Bräutigam},
-    year={2024},
+@inproceedings{10.1145/3656650.3656728,
+author = {Mei\ss{}ner, Noah and Ludwig, Bernd and Decker, Steffen and Br\"{a}utigam, Volker},
+title = {Efficient Indoor Mapping with HoloLens 2},
+year = {2024},
+isbn = {9798400717642},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3656650.3656728},
+doi = {10.1145/3656650.3656728},
+abstract = {Indoor navigation systems for pedestrians require floor plans of buildings. Acquiring them is costly and time-consuming, as the standard procedure is to digitise 2D blueprints and augment them with information required for navigating users. In this demo, as an alternative, we use the Holo Lens 2 to construct floor plans on site. We illustrate how to construct plans that are as accurate as digitised blueprints, but much more efficient to acquire and easier to augment with information about the physical environment that is impossible to obtain from blueprints.},
+booktitle = {Proceedings of the 2024 International Conference on Advanced Visual Interfaces},
+articleno = {103},
+numpages = {3},
+keywords = {Augmented Reality, Holo Lens, Indoor Navigation, Map Generation},
+location = {, Arenzano, Genoa, Italy, },
+series = {AVI '24}
 }
+
+
+
 ```
 
 
