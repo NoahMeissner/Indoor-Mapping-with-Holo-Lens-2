@@ -29,9 +29,6 @@ doi = {10.1145/3656650.3656728},
 booktitle = {Proceedings of the 2024 International Conference on Advanced Visual Interfaces},
 articleno = {103},
 }
-
-
-
 ```
 
 
