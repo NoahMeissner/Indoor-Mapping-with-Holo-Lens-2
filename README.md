@@ -17,17 +17,12 @@ impossible to obtain from blueprints
 
 # Citation
 ```
-@inproceedings{10.1145/3656650.3656728,
-author = {Mei\ss{}ner, Noah and Ludwig, Bernd and Decker, Steffen and Br\"{a}utigam, Volker},
-title = {Efficient Indoor Mapping with HoloLens 2},
-year = {2024},
-isbn = {9798400717642},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3656650.3656728},
-doi = {10.1145/3656650.3656728},
-booktitle = {Proceedings of the 2024 International Conference on Advanced Visual Interfaces},
-articleno = {103},
+@inproceedings{meissner2024efficient,
+  title={Efficient Indoor Mapping with HoloLens 2},
+  author={Mei{\ss}ner, Noah and Ludwig, Bernd and Decker, Steffen and Br{\"a}utigam, Volker},
+  booktitle={Proceedings of the 2024 International Conference on Advanced Visual Interfaces},
+  pages={1--3},
+  year={2024}
 }
 ```
 
